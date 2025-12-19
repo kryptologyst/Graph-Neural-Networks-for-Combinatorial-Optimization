@@ -1,0 +1,61 @@
+# Configuration for GNN-based TSP optimization
+
+# Model configuration
+model:
+  name: "GraphPointerNetwork"  # Options: GraphPointerNetwork, GraphTransformerTSP, GraphIsomorphismTSP, GraphSAGETSP
+  input_dim: 2
+  hidden_dim: 128
+  n_layers: 3
+  n_heads: 8
+  dropout: 0.1
+  use_gat: true
+  use_positional_encoding: true
+
+# Training configuration
+training:
+  batch_size: 32
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  n_epochs: 100
+  early_stopping_patience: 20
+  gradient_clip_norm: 1.0
+  scheduler_patience: 10
+  scheduler_factor: 0.5
+
+# Data configuration
+data:
+  n_train_instances: 1000
+  n_val_instances: 200
+  n_test_instances: 100
+  n_cities: 20
+  train_seed: 42
+  val_seed: 123
+  test_seed: 456
+
+# Evaluation configuration
+evaluation:
+  compute_optimality_gap: true
+  save_predictions: true
+  generate_plots: true
+  save_artifacts: true
+
+# Logging configuration
+logging:
+  use_wandb: false
+  wandb_project: "gnn-tsp"
+  log_interval: 10
+  save_checkpoints: true
+  checkpoint_dir: "checkpoints"
+
+# Device configuration
+device:
+  use_cuda: true
+  use_mps: true
+  fallback_to_cpu: true
+
+# Paths
+paths:
+  data_dir: "data"
+  assets_dir: "assets"
+  checkpoints_dir: "checkpoints"
+  logs_dir: "logs"
